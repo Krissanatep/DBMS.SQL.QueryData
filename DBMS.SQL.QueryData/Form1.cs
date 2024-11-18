@@ -29,15 +29,30 @@ namespace DBMS.SQL.QueryData
         private void Form1_Load(object sender, EventArgs e)
         {
             connect();
-            showdata();
+            showdata("select * from Products");
         }
-        private void showdata()
+        private void showdata(string sql)
         {
-            String sql = "select * from Products";
+            //String sql = "select * from Products";
             da = new SqlDataAdapter(sql, conn);
             DataSet ds = new DataSet();
             da.Fill(ds);
             dataGridView1.DataSource = ds.Tables[0];
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            showdata("select EmployeeID,Title+FirstName+''+LastName EmpName,Position from Employees");
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            showdata("select * from Categories");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            showdata("select * from Products");
         }
     }
 }
